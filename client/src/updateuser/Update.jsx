@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-import { useState } from "react";
-import toast from "react-hot-toast";
+const UpdateUser = () => {
+  const generateNim = () => {
+    // Generate random number between 100 and 999
+    const randomSuffix = Math.floor(Math.random() * 900) + 100;
+    return `241091700${randomSuffix}`;
+  };
 
-function UpdateUser() {
   const users = {
-    nim: "",
+    nim: generateNim(), // Set nim to a constant value with random suffix
     name: "",
     address: "",
   };
@@ -17,8 +17,6 @@ function UpdateUser() {
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
-
     setUser({ ...user, [name]: value });
   };
 
@@ -48,11 +46,10 @@ function UpdateUser() {
 
   return (
     <>
-      <div className="container min-h-screen  mx-auto mt-28  ">
+      <div className="container min-h-screen  mx-auto mt-28">
         <form action="" onSubmit={submitForm}>
           <h3 className="text-3xl font-bold mb-5 text-center">Edit User</h3>
-
-          <div className=" flex items-center justify-center w-full">
+          <div className="flex items-center justify-center w-full">
             <div className="flex-col">
               <label className="form-control w-full">
                 <div className="label">
@@ -64,7 +61,7 @@ function UpdateUser() {
                   value={user.nim}
                   name="nim"
                   onChange={inputHandler}
-                  placeholder="Masuka Nim Anda"
+                  placeholder="Masukan NIM Anda"
                   className="input input-bordered w-full max-w-xs"
                 />
               </label>
@@ -101,10 +98,10 @@ function UpdateUser() {
 
               <div className="flex justify-center gap-5">
                 <button className="btn mb-5 mt-5" type="submit">
-                  Kirim <i class="fa-solid fa-paper-plane"></i>
+                  Kirim <i className="fa-solid fa-paper-plane"></i>
                 </button>
                 <Link to="/" className="btn mb-5 mt-5">
-                  Kembali <i class="fa-solid fa-arrow-rotate-left"></i>
+                  Kembali <i className="fa-solid fa-arrow-rotate-left"></i>
                 </Link>
               </div>
             </div>
@@ -113,6 +110,6 @@ function UpdateUser() {
       </div>
     </>
   );
-}
+};
 
 export default UpdateUser;
